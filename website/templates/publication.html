@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}欢迎访问{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <p>总共发表{{ publications|length }}篇文章</p>
+                {% for publication in publications %}
+                   <p>{{ publication.reference }}</p>
+                   <hr>
+                    {% if publication.img %}
+                        <div class="img" style="text-align: center">
+                        <img src="http://127.0.0.1:8000/media/{{ publication.img }}" style="max-width: 50%; border-radius: 10%;" >
+                        </div>
+                    {% endif %}
+                    <p>摘要：{{ publication.abstract }}</p>
+                    <hr style="border-bottom:3px double red;">
+                {%  endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

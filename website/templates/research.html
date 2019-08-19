@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Research{% endblock %}
+{% block content %}
+    <div class="research" style="margin-left: 5%">
+
+
+     {% for research in researches %}
+         <h3>{{ research.title }}</h3>
+         <p>{{ research.content|safe}}</p>
+         <hr>
+     {%  endfor %}
+    </div>
+{% endblock %}
