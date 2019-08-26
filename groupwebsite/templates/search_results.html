@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}欢迎访问{% endblock %}
+{% block content %}
+    <p>搜索的内容为：</p>
+<h5 style="color:#bd2130 ">{{ search_info }}</h5>
+{% if error_msg %}
+        {{ error_msg }}
+    {% endif %}
+
+<div class="container">
+    {% for sr in search_results %}
+         <a href="{% url 'new' sr.id %}">
+        <li style="font-size: large">{{sr.title}}</li>
+         </a>
+    {% empty %}
+        <h3>没搜索到</h3>
+    {% endfor %}
+</div>
+
+
+
+{% endblock %}

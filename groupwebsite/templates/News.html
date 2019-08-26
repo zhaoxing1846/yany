@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}News{% endblock %}
+{% block content %}
+    <p>总共有{{ all|length }}篇新闻</p>
+  {% for new in news %}
+         <a href="{% url 'new' new.id %}">
+             <h4>{{ new.title }}</h4>
+         </a>
+         <p>创建时间：{{ new.created_time }}</p>
+         <p>{{ new.content|safe|truncatechars:100}}</p>
+  {%  endfor %}
+    <div class="pagination row">
+    <div class="m-auto">
+        <span class="step-links">
+            <!-- 如果不是第一页，则显示上翻按钮 -->
+            {% if news.has_previous %}
+                <a href="?page=1" class="btn btn-success">
+                    &laquo; 1
+                </a>
+                <span>...</span>
+                <a href="?page={{ news.previous_page_number }}"
+                   class="btn btn-secondary"
+                >
+                    {{ news.previous_page_number }}
+                </a>
+            {% endif %}
+
+            <!-- 当前页面 -->
+            <span class="current btn btn-danger btn-lg">
+                {{ news.number }}
+            </span>
+
+            <!-- 如果不是最末页，则显示下翻按钮 -->
+            {% if news.has_next %}
+                <a href="?page={{ news.next_page_number }}"
+                   class="btn btn-secondary"
+                >
+                    {{ news.next_page_number }}
+                </a>
+                <span>...</span>
+                <a href="?page={{ news.paginator.num_pages }}"
+                   class="btn btn-success"
+                >
+                    {{ news.paginator.num_pages }} &raquo;
+                </a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+
+{% endblock %}

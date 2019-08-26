@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Professor Yan{% endblock %}
+{% block content %}
+    {% for Professor in Professors %}
+        <div class="container">
+            <div class="row" style="margin-top: 2%;">
+                <div class="col-4">
+                <img src="{{ Professor.Img.url }}" style="max-width: 100%; border-radius: 5%;box-shadow: 0 0 0 2px white , 0 0 5px 4px #818182;
+">
+                </div>
+                <div class="col-8">
+                <h3>{{ Professor.Name }}</h3>
+                    <hr>
+                    <p>{{ Professor.Brief|safe }}</p>
+                </div>
+            </div>
+             <hr>
+            <div class="row">
+
+                 <p>{{ Professor.Detail|safe }}</p>
+            </div>
+        </div>
+
+    {%  endfor %}
+{% endblock %}

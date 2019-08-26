@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Homepage{% endblock %}
+{% block homepage %}
+    <div class="container">
+  <div class="row">
+    <div class="col-8">
+        <div class="bd-example" style="margin-top: 1%;box-shadow: 0px 1px 15px 2px #808080;
+	top: -8px;">
+
+          <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators" style="list-style-type:circle">
+              <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+              <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+              <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="{{ carousel1.img.url }}" class="d-block w-100" alt="...">
+
+              </div>
+              <div class="carousel-item">
+                <img src="{{ carousel2.img.url }}" class="d-block w-100" alt="...">
+
+              </div>
+              <div class="carousel-item">
+                <img src="{{ carousel3.img.url }}" class="d-block w-100" alt="...">
+              </div>
+                <div class="carousel-item">
+                <img src="{{ carousel4.img.url }}" class="d-block w-100" alt="...">
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+       <div class="col-4">
+           <div class="row">
+
+            <img src="{{ indeximage.img.url }}" class="d-block w-100" alt="...">
+
+           </div>
+
+           <div class="row">
+
+            <p>  {{ indeximage.content|safe }}</p>
+
+           </div>
+
+       </div>
+       </div>
+      <div class="row">
+          <div class="col-6" style="margin-top: 3%;margin-bottom: 1%">
+            <div class="row">
+                <div class="col-10">
+                      <h3>Recent News</h3>
+                </div>
+                <div class="col-2">
+                    <a style="color:#005cbf;position:absolute;bottom:15%;font-style: italic" href="{% url 'news' %}">more</a>
+                </div>
+            </div>
+
+              <hr>
+            {% for new in indexnews %}
+         <a href="{% url 'new' new.id %}">
+
+
+             <h6 style="color: #0056b3;"> <button type="button" id="myButton" class="btn btn-primary" style="font-style: oblique ;font-size: xx-small">New
+</button>        {{ new.title }}</h6>
+         </a>
+  {%  endfor %}
+          </div>
+          <div class="col-6" style="margin-top: 3%;margin-bottom: 1%">
+          <div class="row">
+              <div class="col-10">
+                  <h3>Recent Publications</h3>
+              </div>
+              <div class="col-2">
+                   <a style="color:#005cbf;position:absolute;bottom:15%;font-style: italic" href="{% url 'publication' %}">more</a>
+              </div>
+          </div>
+
+              <hr>
+              {% for publication in indexpubs %}
+                  <li style="font-size: medium;color: #0056b3;list-style-type: square;"> {{ publication.reference }}</li>
+                {%  endfor %}
+
+          </div>
+      </div>
+
+  </div>
+{% endblock %}

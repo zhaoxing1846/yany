@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}People{% endblock %}
+{% block content %}
+
+ {% for People_type in People_types %}
+        <div>
+           <h3>{{ People_type }}</h3>
+        </div>
+     <hr>
+         <div class="row">
+          {% for Member in Members %}
+
+              {% if Member.Member_type == People_type %}
+                 <div class="col-4" style="margin-top: 2%">
+                    <div class="row">
+                      <div class="col-6">
+                          {% if Member.Img %}
+                          <img src="{{ Member.Img.url }}" style="max-width: 100%; border-radius: 50%;box-shadow: 0px 1px 5px 1px #6610f2;">
+                          {% endif %}
+                      </div>
+                      <div class="col-6">
+                          <h5>{{ Member.Name }}</h5>
+                          <p>{{ Member.Email }}</p>
+                          <p>{{ Member.Introduction }}</p>
+                      </div>
+                    </div>
+                 </div>
+
+
+              {% endif %}
+
+          {% endfor %}
+         </div>
+     <hr>
+
+    {% endfor %}
+
+{#<h3>{{ People_type.type_name }}</h3>#}
+{#  {%  for Member in Members %}#}
+{#  <div class="col-4">#}
+{#      <div class="col-6">#}
+{#          <img src="{{ Member.Img.url }}" style="max-width: 100%; border-radius: 50%;">#}
+{#      </div>#}
+{#      <div class="col-6">#}
+{#          <h3>{{ Member.Name }}</h3>#}
+{#          <p>Email：{{ Member.Email }}</p>#}
+{#          <p>{{ Member.Introduction }}</p>#}
+{#      </div>#}
+{#  </div>#}
+{##}
+{#  {% endfor %}#}
+
+
+{% endblock %}

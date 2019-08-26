@@ -3,57 +3,115 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
- <title>{% block title %}}{% endblock %}</title>
- <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
- <script type="text/javascript" src="{% static 'bootstrap/jquery/jquery-3.4.1.js' %}"></script>
- <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+   <title>{% block title %}}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/fonts/glyphicons-halflings-regular.ttf' %}">
+   <script type="text/javascript" src="{% static 'bootstrap/jquery/jquery-3.4.1.js' %}"></script>
+   <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
   {% block header_extends %}{% endblock %}
 </head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-    <a class="navbar-brand" style="color:white" href="{% url 'Home'%}">课题组主页</a>
+<body class="main">
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <a class="navbar-brand" style="color:white; margin-left: 15%;" href="{% url 'Home' %}">Yan Research Group</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" style="color:white" href="{% url 'article_list'%}">Articles <span class="sr-only">(current)</span></a>
+           <li class="nav-item active">
+          <a class="nav-link" style="color:white" href="{% url 'Home'%}">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" style="color:white"  href="{% url 'member_list'%}">People</a>
+          <a class="nav-link" style="color:white" href="{% url 'Prof'%}">Prof. Yan</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" style="color:white"  href="{% url 'research'%}">
-          Research
-          </a>
+          <a class="nav-link" style="color:white"  href="{% url 'People'%}">People</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"  style="color:white" href="{% url 'publication_list'%}">Publications</a>
+          <a class="nav-link" style="color:white"  href="{% url 'research' %}">Research</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" style="color:white"  href="{% url 'news' %}">News</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"   style="color:white" href="{% url 'publication' %}">Publications</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link"  style="color:white" href="{% url 'Photos' %}">Photos</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link"  style="color:white" href="{% url 'contact' %}">Contact</a>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <form role="search" class="form-inline my-2 my-lg-0" action="{% url 'search' %}"   method="get">
+        {% csrf_token %}
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search_info">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
   </nav>
-<div class="container-fluid">
-    {% block homepage %}{% endblock %}
-</div>
-<div class="container-fluid">
-  <div class="row">
-       <div class="col-8">
-          {% block content %}{% endblock %}
-       </div>
 
-  </div>
+
+
+<content>
+<div class="container">
+  {% block homepage %}{% endblock %}
+    <div class="row">
+        <div class="col-1">
+
+        </div>
+        <div class="col-10">
+         {% block content %}{% endblock %}
+        </div>
+        <div class="col-1">
+
+        </div>
+    </div>
 </div>
+</content>
+
+
 <div class="alert alert-dark bg-dark" role="alert">
-   <p style="text-align: center;color:white" ">CopyRight © 2018 ~ 2019 鄢勇课题组</p>
-    <p style="text-align: center;color:white">Powered by Django & Bootstrap</p>
+   <p style="text-align: center;color:white" ">地址：中关村北一条11号 | 邮编：100190</p>
+   <p style="text-align: center;color:white" ">CopyRight © 2019 ~ 2020 鄢勇课题组</p>
 </div>
+
 </body>
+
+<style>
+.main {
+
+  display: flex;
+
+  min-height: 100vh;
+
+  flex-direction: column;
+
+}
+nav {
+
+  min-height: 50px;
+
+}
+content {
+
+  background: white;
+
+  flex: 1;  /* 1代表最大 */
+
+}
+alert {
+
+
+  min-height: 100px;
+
+}
+</style>
+
+
 
 </html>

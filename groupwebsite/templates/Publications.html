@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Publications{% endblock %}
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                {% for publication in publications %}
+                   <p>{{ publication.reference }}</p>
+                   <hr>
+                    {% if publication.img %}
+                        <div class="img" style="text-align: center">
+                        <img src="{{ publication.img.url }}" style="max-width: 20%; border-radius: 10%;" >
+                        </div>
+                    {% endif %}
+                    <p>Abstract：{{ publication.abstract }}</p>
+                    <hr style="border-bottom:3px double red;">
+                {%  endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
